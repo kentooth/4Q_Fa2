@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Table Generator by multiplying politely</title>
+</head>
+<body>
+<div class="header">
+<h2>Welcome to your polite Multiplication Table Generator</h2>
+
+<p>Enter numbers between 2 and 10:</p>
+<input type="text" id="beginningValue" placeholder="Beginning Value">
+<input type="text" id="endingValue" placeholder="Ending Value">
+<button onclick="generateTable()">Generate Table</button>
+</div>
+<div id="tableBox"></div>
+
+<script>
+function generateTable() {
+    var beginValue = parseInt(document.getElementById("beginningValue").value);
+    var endValue = parseInt(document.getElementById("endingValue").value);
+
+    if (isNaN(beginValue) || isNaN(endValue) || beginValue < 2 || beginValue > 10 || endValue < 2 || endValue > 10) {
+        alert("Politely enter numbers between 2 and 10");
+        return;
+    }
+
+    document.getElementById("tableBox").innerHTML = "";
+
+    var table = "<table border='1'><tr><th></th>";
+
+    for (var x = beginValue; x <= endValue; x++) {
+        table += "<th>" + x + "</th>";
+    }
+    table += "</tr>";
+
+    for (var i = beginValue; i <= endValue; i++) {
+        table += "<tr><th>" + i + "</th>";
+        for (var x = beginValue; x <= endValue; x++) {
+            table += "<td>" + (i * x) + "</td>";
+        }
+        table += "</tr>";
+    }
+    table += "</table>";
+
+    document.getElementById("tableBox").innerHTML = table;
+}
+</script>
+</body>
+</html>
